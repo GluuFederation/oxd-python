@@ -43,5 +43,7 @@ pip install pyOpenSSL
 python demosite.py
 ```
 
+Enable **basic** script on your gluu-server: Maganage Custom Scripts -> Person Authentication -> basic
+
 Now the demosite can be accessed at [https://client.example.com:8080](https://client.example.com:8080)
 
