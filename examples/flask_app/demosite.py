@@ -17,7 +17,12 @@ def home():
 
 @app.route('/authorize/')
 def authorize():
+    # If site is not registered, first register it
+    if not oxc.config.get('oxd','id'):
+        oxc.register_site()
+        
     auth_url = oxc.get_authorization_url()
+    
     return redirect(auth_url)
 
 
