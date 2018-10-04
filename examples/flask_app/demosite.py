@@ -9,6 +9,9 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 config = os.path.join(this_dir, 'demosite.cfg')
 oxc = oxdpython.Client(config)
 
+# If site is not registered, first register it
+if not oxc.config.get('oxd','id'):
+    oxc.register_site()
 
 @app.route('/')
 def home():
@@ -16,13 +19,8 @@ def home():
 
 
 @app.route('/authorize/')
-def authorize():
-    # If site is not registered, first register it
-    if not oxc.config.get('oxd','id'):
-        oxc.register_site()
-        
+def authorize():        
     auth_url = oxc.get_authorization_url()
-    
     return redirect(auth_url)
 
 
